@@ -28,9 +28,11 @@ cd Track_Phone_Usage
 ##### 5. For Windows user, if you meet error with PyYaml, you can download and install it manually from here: https://pyyaml.org/wiki/PyYAML. If your OS platform is Windows, make sure that Windows C++ build tool like visual studio 15+ or visual c++ 2015+ is installed for training.
 
 ##### 6. Download Below pretrained and offline trained Models and training and validation datasets from the Google Drive https://drive.google.com/drive/folders/1ZyzRj-G6FolQ-qhJzOx1YkBptYtaWjeS?usp=sharing 
-- Download the object detection model manually: yolov3-spp.weights(Google Drive | Baidu pan). Place it into detector/yolo/data.
-- Download our pose models. Place them into pretrained_models. All models and details are available in our Model Zoo
-- Download data and place it in data folder of project root folder
+- Download Track_Phone_Usage folder from above google drive and merge it with cloned project folder. 
+-- Download the object detection model manually: yolov3-spp.weights(Google Drive | Baidu pan). Place it into detector/yolo/data.
+-- Download our pose models. Place them into pretrained_models. All models and details are available in our Model Zoo
+-- Download data and place it in data folder of project root folder
+-- Download build folder 
 
 <div align="center">
     <img src="docs/logo.jpg", width="400">
