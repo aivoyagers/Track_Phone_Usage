@@ -1,0 +1,13 @@
+six
+terminaltables
+scipy==1.1.0
+opencv-python
+matplotlib
+visdom
+tqdm
+tensorboardx
+easydict
+pyyaml
+torch>=1.1.0
+torchvision>=0.3.0
+munkres
