@@ -31,11 +31,22 @@ cd Track_Phone_Usage
 
 ##### 5. For Windows user, if you meet error with PyYaml, you can download and install it manually from here: https://pyyaml.org/wiki/PyYAML. If your OS platform is Windows, make sure that Windows C++ build tool like visual studio 15+ or visual c++ 2015+ is installed for training.
 
-##### 6. Download Below pretrained/offline trained Models, training and validation datasets and other folders from the Google Drive https://drive.google.com/drive/folders/1ZyzRj-G6FolQ-qhJzOx1YkBptYtaWjeS?usp=sharing and merge with git cloned folder retaining the structure.  
+##### 6. Download data and pretrained/offline trained Models from google drive : https://drive.google.com/drive/folders/1ZyzRj-G6FolQ-qhJzOx1YkBptYtaWjeS?usp=sharing .
+- Copy all the folders in the same structure from the google drive to project (git cloned) base folder. 
+- Note: Track_Phone_Usage/data folder is required only for training and not required for testing. 
+
+' copy [build, data, demo, detector, pretrained_models, samples, yolo] to Track_Phone_Usage (git cloned project base folder)`
+
+##### 7. To train on labelled video datasets in 'data' folder :
+` 'python track_phone_usage.py --video data --train'  `
+
+##### 8. To predict or test :
+` 'python track_phone_usage --video /path/to/video_file.mp4'  `
 
 <div align="center">
-    <img src="docs/logo.jpg", width="400">
+    <img src="demo/track_phone_usage_demo.gif", width="400">
 </div>
+
 
 ## Citation
 Please cite these papers in your publications if it helps your research:

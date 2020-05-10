@@ -24,8 +24,16 @@ from alphapose.utils.webcam_detector import WebCamDetectionLoader
 from alphapose.utils.writer import DataWriter
 
 from TPU.ppose_nms_PMPUD import write_json
+from pose_track_model import train_pose_tracking 
+
 
 """----------------------------- train or demo options -----------------------------"""
+'''
+To train on datasets in 'data' :
+    '--video data --train'' as command line argument
+To predict on the trained models :
+    '--video /path/to/video_file.mp4' as command line argument
+'''
 
 parser = argparse.ArgumentParser(description='AlphaPose Demo')
 parser.add_argument('--cfg', type=str,  
@@ -45,7 +53,7 @@ parser.add_argument('--list', dest='inputlist',
 parser.add_argument('--image', dest='inputimg',
                     help='image-name', default="")
 parser.add_argument('--outdir', dest='outputpath',
-                    help='output-directory', default="output")
+                    help='output-directory', default="pose_points_data")
 parser.add_argument('--save_img', default=False, action='store_true',
                     help='save result as image')
 parser.add_argument('--vis', default=False, action='store_true',
@@ -92,6 +100,11 @@ args = parser.parse_args()
 cfg = update_config(args.cfg)
 svc_file = args.svc
 
+if args.train :
+    output_file_path = args.outputpath
+else :
+    output_file_path = 'samples'
+    
 if platform.system() == 'Windows':
     args.sp = True
 
@@ -170,7 +183,7 @@ def loop():
 
 def load_keypoints(kp_data_file_name, pltThres=0.35):
     data = []
-    with open(os.path.join(args.outputpath, kp_data_file_name), 'r') as json_file:
+    with open(os.path.join(output_file_path, kp_data_file_name), 'r') as json_file:
         data = json.load(json_file)
     kp_data = pd.DataFrame(data)
 
@@ -487,13 +500,14 @@ if __name__ == "__main__":
         final_result = writer.results()
         
         kp_data_file_name = os.path.splitext(os.path.basename(input_source))[0] + '.json'
-        write_json(final_result, args.outputpath, form=args.format, for_eval=args.eval, 
+            
+        write_json(final_result, output_file_path, form=args.format, for_eval=args.eval, 
                    lbl_name=lbl_name, input_file_name=input_source, 
                    output_file_name=kp_data_file_name)
         print(f"Results have been written to json for {input_source}") 
         
         if args.train :
-            continue
+            continue        
         
         # Predict action and visualize 
         if action_model is not None :
@@ -509,5 +523,7 @@ if __name__ == "__main__":
             del(kp_X)
             
             visualize_action(kp_data)
-        
-        
+
+# Train Pose tracking using keypoints estimation        
+    if args.train :
+        train_pose_tracking()           
