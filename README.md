@@ -35,16 +35,16 @@ cd Track_Phone_Usage
 - Copy all the folders in the same structure from the google drive to project (git cloned) base folder. 
 - Note: Track_Phone_Usage/data folder is required only for training and not required for testing. 
 
-' copy [build, data, demo, detector, pretrained_models, samples, yolo] to Track_Phone_Usage (git cloned project base folder)`
+` copy [build, data, demo, detector, pretrained_models, samples, yolo] to Track_Phone_Usage (git cloned project base folder) `
 
 ##### 7. To train on labelled video datasets in 'data' folder :
-` 'python track_phone_usage.py --video data --train'  `
+` python track_phone_usage.py --video data --train  `
 
 ##### 8. To predict or test :
-` 'python track_phone_usage --video /path/to/video_file.mp4'  `
+` python track_phone_usage --video /path/to/video_file.mp4  `
 
 <div align="center">
-    <img src="demo/track_phone_usage_demo.gif", width="400">
+    <img src="demo/track_phone_usage_demo.gif", width="800">
 </div>
 
 
